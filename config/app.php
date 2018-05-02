@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => 'Incident Status Dashboard',
+    'name' => 'Foobooks Status Dashboard',
 
     /*
     |--------------------------------------------------------------------------
