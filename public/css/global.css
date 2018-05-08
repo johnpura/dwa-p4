@@ -1,0 +1,17 @@
+html, body {
+    padding-top: 50px;
+  }
+
+.form-styles {
+    border-radius: 15px;
+    border: 1px solid lightsteelblue;
+    background: lightgray;
+    padding: 20px;
+}
+
+.page-wrapper {
+    max-width: 33%;
+    margin: 0 auto;
+    padding: 15px;
+  }
+

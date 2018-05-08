@@ -12,12 +12,9 @@ class IncidentsTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         $incidents = [
-            [16534, 'Website', 'Foobooks.com is experiencing an outage',  'critical', 'outage'],
-            [16533, 'Mobile', 'Mobile app performance issue',  'major', 'normal'],
-            [16532, 'API', 'Slow API Response Times', 'minor', 'normal'],
-            [16531, 'Email', 'Some users are unable to receive Foobooks emails', 'minor', 'normal'],
+            [16534, 'Website', 'Foobooks.com is experiencing an outage',  'Critical', 'outage'],
+            [16400, 'API', 'Slow API Response Times', 'Minor', 'normal'], 
         ];
 
         $count = count($incidents);
@@ -27,13 +24,14 @@ class IncidentsTableSeeder extends Seeder
     
             $incident->created_at = Carbon\Carbon::now()->subDays($count)->toDateTimeString();
             $incident->updated_at = Carbon\Carbon::now()->subDays($count)->toDateTimeString();
-            $incident->incident_id = $incidentData[0];
+            $incident->incident_number = $incidentData[0];
             $incident->affected_component = $incidentData[1];
             $incident->headline = $incidentData[2];
             $incident->severity = $incidentData[3];
             $incident->indicator = $incidentData[4];
     
             $incident->save();
+
             $count--;
         }
     }

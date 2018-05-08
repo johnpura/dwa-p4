@@ -16,7 +16,7 @@ class CreateIncidentsTable extends Migration
         Schema::create('incidents', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('incident_id');             // The incident id for the issue
+            $table->integer('incident_number');         // The incident id for the issue
             $table->string('affected_component');       // The configuration item that is affected
             $table->string('headline');                 // A brief high-level description of the issue
             $table->string('severity');                 // The severity of this incident (i.e. minor, major or critical)

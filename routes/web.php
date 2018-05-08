@@ -1,9 +1,4 @@
 <?php
-/*
-Route::get('/', function () {
-    return view('index');
-});
-*/
 
 /*
 |--------------------------------------------------------------------------
@@ -11,23 +6,34 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
-/* Status dashboard */
+/* Home page */
 Route::get('/', 'IncidentController@index');
-
-/* Display all incidents */
-Route::get('/incidents/history', 'IncidentController@history');
 
 /* Search for an incident */
 Route::get('/incidents/search', 'IncidentController@search');
 
-/* Create a new incident */
-Route::post('/incidents/create', 'IncidentController@create');
+/* Form to create a new incident */
+Route::get('/incidents/create', 'IncidentController@create');
 
-/* Edit an incident */
-Route::post('/incidents/edit', 'IncidentController@edit');
+/* Logic to add an incident */
+Route::post('/incidents/store', 'IncidentController@store');
+
+/* Form to edit an incident */
+Route::get('/incidents/{id}/edit', 'IncidentController@edit');
+
+/* Logic to edit an incident */
+Route::put('/incidents/{id}', 'IncidentController@update');
+
+
+
+
+
+
+
+
 
 /* Delete an incident */
-Route::post('/incidents/delete', 'IncidentController@delete');
+Route::post('/incidents/delete/{incident_id}', 'IncidentController@delete');
 
 /*
 |--------------------------------------------------------------------------
@@ -36,43 +42,14 @@ Route::post('/incidents/delete', 'IncidentController@delete');
 */
 
 /* View the details of an incident */
-Route::get('/updates/show', 'UpdateController@show');
+Route::get('/updates/show/{incident_id}', 'UpdateController@show');
 
-/* Create a new update for an incident */
-Route::get('/updates/create', 'UpdateController@create');
+/* Create an update post for an incident */
+Route::post('/updates/create', 'UpdateController@create');
 
-/* Edit an update for an incident */
+/* Edit an update post for an incident */
 Route::get('/updates/edit', 'UpdateController@edit');
 
-/* Create a new update for an incident */
+/* Create a new update post for an incident */
 Route::get('/updates/delete', 'UpdateController@delete');
 
-
-/*
-Route::get('/debug', function () {
-
-    $debug = [
-        'Environment' => App::environment(),
-        'Database defaultStringLength' => Illuminate\Database\Schema\Builder::$defaultStringLength,
-    ];
-
-    
-    // The following commented out line will print your MySQL credentials.
-    // Uncomment this line only if you're facing difficulties connecting to the
-    // database and you need to confirm your credentials. When you're done
-    // debugging, comment it back out so you don't accidentally leave it
-    // running on your production server, making your credentials public.
-    
-    // #$debug['MySQL connection config'] = config('database.connections.mysql');
-
-    try {
-        $databases = DB::select('SHOW DATABASES;');
-        $debug['Database connection test'] = 'PASSED';
-        $debug['Databases'] = array_column($databases, 'Database');
-    } catch (Exception $e) {
-        $debug['Database connection test'] = 'FAILED: '.$e->getMessage();
-    }
-
-    dump($debug);
-});
-*/

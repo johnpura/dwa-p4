@@ -16,10 +16,9 @@ class CreateUpdatesTable extends Migration
         Schema::create('updates', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('incident_id');             // The incident id that the update belongs to
-            $table->string('status');                   // The current status of the incident (i.e. investigating, identified, monitoring, resolved, postmortem)
-            $table->dateTime('occured_at');             // Date & time when the update occured
-            $table->text('description');                // A description for the update     
+            $table->integer('incident_number');
+            $table->string('status_icon');              // A status icon for each update 
+            $table->text('description');                // A description for the update 
         });
     }
 
