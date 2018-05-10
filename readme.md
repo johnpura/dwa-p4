@@ -3,10 +3,8 @@
 - Production URL: <http://p4.dumbgood.life>
 
 ## Outside resources
-- **[Google Fonts](https://fonts.google.com/)**
-- **[Bootstrap 4](http://getbootstrap.com/>)**
+- **[Bootstrap 3](http://getbootstrap.com/docs/3.3/>)**
 - **[jQuery](https://jquery.com/>)**
-- **[Popper.js](https://popper.js.org/>)**
 
 ## Code style divergences
 None
