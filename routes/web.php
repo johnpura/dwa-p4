@@ -24,32 +24,13 @@ Route::get('/incidents/{id}/edit', 'IncidentController@edit');
 /* Logic to edit an incident */
 Route::put('/incidents/{id}', 'IncidentController@update');
 
+/* Page to delete an incident */
+Route::get('/incidents/{id}/delete', 'IncidentController@delete');
 
-
-
-
-
-
-
-
-/* Delete an incident */
-Route::post('/incidents/delete/{incident_id}', 'IncidentController@delete');
-
-/*
-|--------------------------------------------------------------------------
-| Updates Routes
-|--------------------------------------------------------------------------
-*/
+/* Logic to delete an incident */
+Route::delete('/incidents/{id}', 'IncidentController@destroy');
 
 /* View the details of an incident */
-Route::get('/updates/show/{incident_id}', 'UpdateController@show');
+Route::get('/updates/{id}', 'UpdateController@show');
 
-/* Create an update post for an incident */
-Route::post('/updates/create', 'UpdateController@create');
-
-/* Edit an update post for an incident */
-Route::get('/updates/edit', 'UpdateController@edit');
-
-/* Create a new update post for an incident */
-Route::get('/updates/delete', 'UpdateController@delete');
 

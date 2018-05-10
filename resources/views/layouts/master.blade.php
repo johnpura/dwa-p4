@@ -47,18 +47,20 @@
         </div>
     </nav>
 
-    {{--   --}}
+    {{-- Processing errors --}}
     @if(session('success-alert'))
-        <div class="page-wrapper alert alert-success" role="alert">
+        <div class="page-wrapper alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>{{ session('success-alert') }}</strong>.
         </div>
     @elseif(session('alert'))
-        <div class="page-wrapper alert alert-danger" role="alert">
+        <div class="page-wrapper alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>{{ session('alert') }}</strong>.
         </div>
     @endif
 
-    {{--   --}}
+    {{--  Main page content --}}
     <section>
         @yield('content')
     </section>

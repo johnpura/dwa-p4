@@ -15,3 +15,9 @@ html, body {
     padding: 15px;
   }
 
+.table-wrapper {
+  max-width: 66%;
+  margin: 0 auto;
+  padding: 15px;
+}
+

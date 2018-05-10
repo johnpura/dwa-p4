@@ -45,8 +45,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    {{-- Custom JavaScript --}}
-    <script src="/js/custom.js"></script>
-@endpush

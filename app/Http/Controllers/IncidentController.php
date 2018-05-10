@@ -46,7 +46,7 @@ class IncidentController extends Controller
                 'incidentData' => $incidentData
             ]);
         } 
-        
+
         elseif(!$incidentData) {
             return redirect('/')->with([
                 'alert' => 'Incident #' . $id . ' was not found.'
@@ -88,8 +88,8 @@ class IncidentController extends Controller
         $incident->headline = $request->headline;
         $incident->save();
 
-        return redirect('/incidents/create')->with([
-            'success-alert' => 'Incident #' . $incident->incident_number . ' was successfully added.'
+        return redirect('/')->with([
+            'success-alert' => 'Incident #' . $incident->incident_number . ' has been created successfully.'
         ]);
     }
 
@@ -101,12 +101,68 @@ class IncidentController extends Controller
     {
         $incident = Incident::find($id);
 
-        if(!$incident) {
-            return redirect('/')->with([
-                'alert' => 'Incident #' . $id . ' was not found.'
-            ]);
+        return view('incidents.edit')->with(['incident' => $incident]);
+    }
+
+    /**
+    * Method: PUT
+    * Route: /incidents/{id}
+    */
+    public function update(Request $request, $id) 
+    {
+        // Validate form data
+        $this->validate($request, [
+            'incidentNumber' => 'required | numeric',
+            'severity' => 'required',
+            'indicator' => 'required',
+            'affectedComponent' => 'required',
+            'headline' => 'required'
+        ]);
+
+        $incident = Incident::find($id);
+
+        // Update the data
+        $incident->incident_number = $request->incidentNumber;
+        $incident->severity = $request->severity;
+        $incident->indicator = $request->indicator;
+        $incident->affected_component = $request->affectedComponent;
+        $incident->headline = $request->headline;
+        $incident->save();
+
+        return redirect('/')->with([
+            'success-alert' => 'Incident #' . $incident->incident_number . ' has been updated successfully.',
+            'incident' => $incident,
+        ]);
+    }
+
+    /*
+    * Method: GET 
+    * Route: /incidents/{id}/delete
+    */
+    public function delete($id)
+    {
+        $incident = Incident::find($id);
+
+        if (!$incident) {
+            return redirect('/')->with('alert', 'Incident not found');
         }
 
-        return view('incidents.edit')->with(['incident' => $incident]);
+        return view('incidents.delete')->with([
+            'incidentData' => $incident
+        ]);
+    }
+
+    /*
+    * Method: DELETE 
+    * Route: /books/{id}/delete
+    */
+    public function destroy($id)
+    {
+        $incident = Incident::find($id);
+        //$incident->updates()->detach();
+        $incident->delete();
+        return redirect('/')->with([
+            'success-alert' => 'Incident #' . $incident->incident_number . ' has been successfully removed.'
+        ]);
     }
 }

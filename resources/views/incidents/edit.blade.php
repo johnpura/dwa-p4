@@ -13,12 +13,13 @@
     {{-- Main page content --}}
     <div class="container-fluid">
         <div class="page-wrapper">
-            <form class="form-styles" id="createIncidentForm" action="/incidents/store" method="post">
-                <h2 class="text-center">Edit an Incident</h2>
+            <form class="form-styles" id="editIncidentForm" action="/incidents/{{ $incident->id }}" method="post">
+                {{ method_field('put') }}
                 {{ csrf_field() }}
+                <h2 class="text-center">Edit Incident #{{ $incident->incident_number }}</h2>
                 <div class="form-group">
                     <label for="incidentNumber" class="control-label">Incident Number:</label>
-                <input type="text" class="form-control" id="incidentNumber" name="incidentNumber" value={{  }}>
+                <input type="text" class="form-control" id="incidentNumber" name="incidentNumber" value="{{ $incident->incident_number }}">
                     @if($errors->get('incidentNumber'))
                         <ul class="list-unstyled">
                             @foreach($errors->get('incidentNumber') as $error)
@@ -78,7 +79,7 @@
                 </div>
                 <div class="form-group">
                     <label for="headline" class="control-label">A brief description of the Incident:</label>
-                    <textarea class="form-control" id="headline" name="headline"></textarea>
+                    <textarea class="form-control" id="headline" name="headline">{{ $incident->headline }}</textarea>
                 </div>
                 @if($errors->get('headline'))
                     <ul class="list-unstyled">
@@ -88,6 +89,7 @@
                     </ul>
                 @endif
                 <button type="submit" class="btn btn-primary text-uppercase">Save</button>
+                <a class="btn btn-primary text-uppercase" href="/" role="button">Back</a>
             </form>
         </div>
     </div>
